@@ -11,11 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 import java.util.UUID;
 
 public class RecordFragment extends Fragment {
+
+    private static final String ARG_RECORD_ID = "record_id";
+
     private Record mRecord;
     private EditText mFirstNameField;
     private EditText mLastNameField;
@@ -23,11 +27,28 @@ public class RecordFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mDealtWithCheckBox;
 
+    public static RecordFragment newInstance(UUID recordId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_RECORD_ID, recordId);
+
+        RecordFragment fragment = new RecordFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID crimeID = (UUID) getActivity().getIntent().getSerializableExtra(RecordActivity.EXTRA_RECORD_ID);
-        mRecord = RecordLab.get(getActivity()).getCrime(crimeID);
+        UUID recordID = (UUID) getArguments().getSerializable(ARG_RECORD_ID);
+        mRecord = RecordLab.get(getActivity()).getRecord(recordID);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();;
+
+        RecordLab.get(getActivity())
+                .updateRecord(mRecord);
     }
 
     @Override
@@ -90,7 +111,7 @@ public class RecordFragment extends Fragment {
         mDateButton.setEnabled(false);
 
         mDealtWithCheckBox = (CheckBox) v.findViewById(R.id.dealt_with_checkbox);
-        mDealtWithCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mDealtWithCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mRecord.setDealtWith(isChecked);

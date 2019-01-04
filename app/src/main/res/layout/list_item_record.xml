@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/record_list_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/record_first_name_label"/>
+
+    <TextView
+        android:id="@+id/record_list_last"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/record_last_name_label"/>
+
+    <TextView
+        android:id="@+id/record_list_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/record_date_label"/>
+
+    <ImageView
+        android:id="@+id/record_list_dealt_with"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dealt With"/>
+
+</LinearLayout>

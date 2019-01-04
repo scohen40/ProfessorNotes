@@ -4,6 +4,7 @@
     <string name="record_last_name_label">Last Name</string>
     <string name="record_course_label">Course</string>
     <string name="record_notes_label">Notes</string>
+    <string name="record_date_label">Date</string>
     <string name="notes_text_hint">type your notes here</string>
     <string name="record_dealt_with_label">Dealt With</string>
 </resources>

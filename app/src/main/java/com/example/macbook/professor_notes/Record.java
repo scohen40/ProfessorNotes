@@ -12,8 +12,12 @@ public class Record {
     private boolean mDealtWith;
 
     public Record() {
-        mId = UUID.randomUUID();
-        mDate  = new Date();
+        this(UUID.randomUUID());
+    }
+
+    public Record(UUID id) {
+        mId = id;
+        mDate = new Date();
     }
 
     public UUID getId() {
