@@ -3,7 +3,9 @@ package com.example.macbook.professor_notes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import static javax.xml.xpath.XPathFactory.newInstance;
 
 public class RecordListFragment extends Fragment {
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
@@ -100,6 +104,11 @@ public class RecordListFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+            case R.id.about_page: {
+                showAbout();
+                return true;
+            }
             case R.id.new_record:
                 Record record = new Record();
                 RecordLab.get(getActivity()).addRecord(record);
@@ -112,9 +121,17 @@ public class RecordListFragment extends Fragment {
                 getActivity().invalidateOptionsMenu();
                 updateSubtitle();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showAbout() {
+
+        FragmentManager manager = getFragmentManager();
+        MyDialogFragment dialogFragment = new MyDialogFragment();
+        dialogFragment.show(manager, "about");
     }
 
     private void updateUI() {

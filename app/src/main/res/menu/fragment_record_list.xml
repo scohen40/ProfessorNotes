@@ -17,8 +17,6 @@
           <item
               android:id="@+id/action_toggle_subtitle"
               android:title="@string/show_subtitle"/>
-
-
         </menu>
 
     </item>
@@ -26,6 +24,6 @@
     <item android:id="@+id/about_page"
         android:icon="@drawable/ic_about"
         android:title="@string/action_about"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 
 </menu>
