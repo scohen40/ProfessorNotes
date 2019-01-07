@@ -131,7 +131,7 @@ public class RecordListFragment extends Fragment {
 
         FragmentManager manager = getFragmentManager();
         MyDialogFragment dialogFragment = new MyDialogFragment();
-        dialogFragment.show(manager, "about");
+        dialogFragment.show(manager, "action_about");
     }
 
     private void updateUI() {
