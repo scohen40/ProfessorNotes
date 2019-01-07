@@ -7,44 +7,25 @@ android:layout_height="wrap_content"
 android:layout_margin="16dp"
 android:orientation="vertical">
 
-<TextView
-    style="?android:listSeparatorTextViewStyle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/record_first_name_label"/>
 
 <EditText
     android:id="@+id/first_name_field"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-
-<TextView
-    style="?android:listSeparatorTextViewStyle"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/record_last_name_label"/>
+    android:hint="@string/record_first_name_hint"/>
 
 <EditText
     android:id="@+id/last_name_field"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-
-<TextView
-    style="?android:listSeparatorTextViewStyle"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/record_course_label"/>
+    android:hint="@string/record_last_name_hint"/>
 
 <EditText
     android:id="@+id/course_field"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-
-<TextView
-    style="?android:listSeparatorTextViewStyle"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="@string/record_notes_label"/>
+    android:hint="@string/record_course_hint"/>
+
 
 <EditText
     android:id="@+id/notes_field"
@@ -53,7 +34,8 @@ android:orientation="vertical">
     android:gravity="left|top"
     android:lines="4"
     android:inputType="textMultiLine"
-    android:maxLength="2000"/>
+    android:maxLength="2000"
+    android:text="@string/record_notes_hint"/>
 
 <Button
     android:id="@+id/date_field"
