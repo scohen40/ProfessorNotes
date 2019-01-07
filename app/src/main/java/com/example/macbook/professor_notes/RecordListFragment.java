@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,8 +19,11 @@ import android.widget.TextView;
 import java.util.List;
 
 public class RecordListFragment extends Fragment {
+    private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+
     private RecyclerView mRecordRecyclerView;
     private RecordAdapter mAdapter;
+    private boolean mSubtitleVisible;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,10 @@ public class RecordListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_record_list, container, false);
 
         setUpRecyclerList(view);
+
+        if(savedInstanceState != null) {
+            mSubtitleVisible = savedInstanceState.getBoolean(SAVED_SUBTITLE_VISIBLE);
+        }
 
         updateUI();
 
@@ -52,9 +60,41 @@ public class RecordListFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_record_list, menu);
+
+        setUpSubtitleItem(menu);
+    }
+
+    private void setUpSubtitleItem(Menu menu) {
+        MenuItem subtitleItem = menu.findItem(R.id.action_toggle_subtitle);
+
+        if(mSubtitleVisible) {
+            subtitleItem.setTitle(R.string.hide_subtitle);
+        } else {
+            subtitleItem.setTitle(R.string.show_subtitle);
+        }
+
+    }
+
+    private void updateSubtitle() {
+        RecordLab recordLab = RecordLab.get(getActivity());
+        int recordCount = recordLab.getRecords().size();
+        String subtitle = getString(R.string.subtitle_format, recordCount);
+
+        if(!mSubtitleVisible) {
+            subtitle = null;
+        }
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setSubtitle(subtitle);
     }
 
     @Override
@@ -67,7 +107,11 @@ public class RecordListFragment extends Fragment {
                         .newIntent(getActivity(), record.getId());
                 startActivity(intent);
                 return true;
-
+            case R.id.action_toggle_subtitle:
+                mSubtitleVisible = !mSubtitleVisible;
+                getActivity().invalidateOptionsMenu();
+                updateSubtitle();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -78,6 +122,8 @@ public class RecordListFragment extends Fragment {
         List<Record> records = recordLab.getRecords();
 
         setUpAdapter(records);
+
+        updateSubtitle();
     }
 
     private void setUpAdapter(List<Record> records) {
