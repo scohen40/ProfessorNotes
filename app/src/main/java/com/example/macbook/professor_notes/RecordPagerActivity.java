@@ -12,14 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimePagerActivity extends AppCompatActivity {
-    private static final String EXTRA_RECORD_ID = "com.example.macbook.professor_notes.record_id";
+public class RecordPagerActivity extends AppCompatActivity {
+    protected static final String EXTRA_RECORD_ID = "com.example.macbook.professor_notes.record_id";
 
     private ViewPager mViewPager;
     private List<Record> mRecords;
 
     public static Intent newIntent(Context packageContext, UUID recordID) {
-        Intent intent = new Intent(packageContext, CrimePagerActivity.class);
+        Intent intent = new Intent(packageContext, RecordPagerActivity.class);
         intent.putExtra(EXTRA_RECORD_ID, recordID);
         return intent;
     }
@@ -37,6 +37,7 @@ public class CrimePagerActivity extends AppCompatActivity {
         mRecords = RecordLab.get(this).getRecords();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager) {
+
             @Override
             public Fragment getItem(int position) {
                 Record record = mRecords.get(position);
@@ -48,6 +49,13 @@ public class CrimePagerActivity extends AppCompatActivity {
                 return mRecords.size();
             }
         });
+
+        for (int i = 0; i < mRecords.size(); i++) {
+            if (mRecords.get(i).getId().equals(recordId)) {
+                mViewPager.setCurrentItem(i);
+                break;
+            }
+        }
     }
 
 }

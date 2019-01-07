@@ -38,7 +38,7 @@ public class RecordFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID crimeID = (UUID) getActivity().getIntent().getSerializableExtra(RecordActivity.EXTRA_RECORD_ID);
+        UUID crimeID = (UUID) getArguments().getSerializable(ARG_RECORD_ID);
         mRecord = RecordLab.get(getActivity()).getCrime(crimeID);
     }
 
@@ -47,6 +47,7 @@ public class RecordFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_record, container, false);
 
         mFirstNameField = (EditText) v.findViewById(R.id.first_name_field);
+        mFirstNameField.setText(mRecord.getFirstName());
         mFirstNameField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -64,6 +65,7 @@ public class RecordFragment extends Fragment {
         });
 
         mLastNameField = (EditText) v.findViewById(R.id.last_name_field);
+        mLastNameField.setText(mRecord.getLastName());
         mLastNameField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -81,6 +83,7 @@ public class RecordFragment extends Fragment {
         });
 
         mCourseField = (EditText) v.findViewById(R.id.course_field);
+        mCourseField.setText(mRecord.getCourse());
         mCourseField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -102,6 +105,7 @@ public class RecordFragment extends Fragment {
         mDateButton.setEnabled(false);
 
         mDealtWithCheckBox = (CheckBox) v.findViewById(R.id.dealt_with_checkbox);
+        mDealtWithCheckBox.setChecked(mRecord.isDealtWith());
         mDealtWithCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

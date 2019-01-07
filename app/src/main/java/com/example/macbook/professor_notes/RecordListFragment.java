@@ -19,7 +19,7 @@ public class RecordListFragment extends Fragment {
     private RecordAdapter mAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_list, container, false);
 
         mRecordRecyclerView = (RecyclerView)view;
@@ -27,7 +27,7 @@ public class RecordListFragment extends Fragment {
 
         updateUI();
 
-        return new View();
+        return view;
     }
 
     private void updateUI() {
@@ -80,9 +80,9 @@ public class RecordListFragment extends Fragment {
             super(inflater.inflate(R.layout.list_item_record, parent, false));
             itemView.setOnClickListener(this);
 
-            mTitleTextView = (TextView) itemView.findViewById(R.id.record_list_title);
-            mDateTextView = (TextView) itemView.findViewById(R.id.record_list_date);
-            mSolvedImageView = (ImageView) itemView.findViewById(R.id.record_list_dealt_with);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.record_list_title_text);
+            mDateTextView = (TextView) itemView.findViewById(R.id.record_list_date_text);
+            mSolvedImageView = (ImageView) itemView.findViewById(R.id.record_list_dealt_with_image);
         }
 
         public void bind(Record Record) {
@@ -94,7 +94,7 @@ public class RecordListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent intent = RecordActivity.newIntent(getActivity(), mRecord.getId());
+            Intent intent = RecordPagerActivity.newIntent(getActivity(), mRecord.getId());
             startActivity(intent);
         }
     }
