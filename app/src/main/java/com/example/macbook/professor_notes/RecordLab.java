@@ -20,14 +20,10 @@ public class RecordLab {
 
     public RecordLab(Context context) { //THIS WILL NEED TO CHANGE TO TAKE INFO ONLY FROM USER INPUT
         mRecords = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
-            Record record = new Record();
-            record.setFirstName("FirstName" + i);
-            record.setLastName("LastName" + i);
-            record.setCourse("Course" + 1);
-            record.setDealtWith(i % 2 == 0); //every other one
-            mRecords.add(record);
-        }
+    }
+
+    public void addRecord(Record record) {
+        mRecords.add(record);
     }
 
     public List<Record> getRecords() {

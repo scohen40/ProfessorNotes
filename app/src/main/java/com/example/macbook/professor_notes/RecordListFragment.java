@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,16 +22,27 @@ public class RecordListFragment extends Fragment {
     private RecordAdapter mAdapter;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_list, container, false);
 
-        mRecordRecyclerView = (RecyclerView)view
-            .findViewById(R.id.record_recycler_view);
-        mRecordRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        setUpRecyclerList(view);
 
         updateUI();
 
         return view;
+    }
+
+    private void setUpRecyclerList(View view) {
+        mRecordRecyclerView = (RecyclerView)view
+            .findViewById(R.id.record_recycler_view);
+        mRecordRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -37,10 +51,36 @@ public class RecordListFragment extends Fragment {
         updateUI();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_record_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_record:
+                Record record = new Record();
+                RecordLab.get(getActivity()).addRecord(record);
+                Intent intent = RecordPagerActivity
+                        .newIntent(getActivity(), record.getId());
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void updateUI() {
         RecordLab recordLab = RecordLab.get(getActivity());
         List<Record> records = recordLab.getRecords();
 
+        setUpAdapter(records);
+    }
+
+    private void setUpAdapter(List<Record> records) {
         if(mAdapter == null) {
             mAdapter = new RecordAdapter(records);
             mRecordRecyclerView.setAdapter(mAdapter);
@@ -97,7 +137,18 @@ public class RecordListFragment extends Fragment {
 
         public void bind(Record Record) {
             mRecord = Record;
-            mTitleTextView.setText(mRecord.getFirstName() + " " + mRecord.getLastName());
+            if(mRecord.getFirstName() != null) {
+                if(mRecord.getLastName() != null) {
+                    mTitleTextView.setText(mRecord.getFirstName() + " " + mRecord.getLastName());
+                } else {
+                    mTitleTextView.setText(mRecord.getFirstName());
+                }
+            } else if(mRecord.getLastName() != null) {
+                mTitleTextView.setText(mRecord.getLastName());
+            } else {
+                mTitleTextView.setText(" ");
+            }
+
             mDateTextView.setText(mRecord.getDate().toString());
             mSolvedImageView.setVisibility(Record.isDealtWith() ? View.VISIBLE : View.GONE);
         }
