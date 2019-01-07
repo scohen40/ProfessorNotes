@@ -18,39 +18,17 @@ The ProfessorNotes app allows teachers to take written and vocal notes throughou
       * Popup Delete Confirmation
   * Add New Student FAB
       * onClick Opens New Student View
-* New Student View
-  * Toolbar Title: "Create New Student"
-  * TextViews:
-      * Course
-      * First Name
-      * Last Name
-      * Main Notes Area
-  * Buttons:
+
+  * Optional Buttons:
       * Add Text Notes Area
       * Add Voice Note
       * Play Voice Note(s) (separate one for each note created with a description)
-      * More - Information Text Fields(Optional), would go right after 'Last Name' - e.g. School/Institution, grade/class standing
-* Student Information View - not editable
-  * Toolbar Title: Student First and Last Name
+      * Optional More - Information Text Fields(Optional), would go right after 'Last Name' - e.g. School/Institution, grade/class   standing
+* Student Information View - editable
   * Text Views
-      * Course
       * First Name
       * Last Name
-      * Text Notes View(s)
+      * Course
+      * Text Notes View
    * Buttons
-      * Play Voice Note(s) (separate one for each note, with a description)
-      * Edit Student Information
-      
-* Edit Student View - editable
-  * Toolbar Title: "Create New Student"
-  * TextViews: 
-      * Course
-      * First Name
-      * Last Name
-      * Text Notes View(s)
-  * Buttons:
-      * Add Text Notes Area
-      * Add Voice Note
-      * Play Voice Note(s) (separate one for each note, with a description)
-      * More - Information Text Fields(Optional), would go right after 'Last Name'
-
+      * Play Voice Note(s) (separate one for each note, with a description
