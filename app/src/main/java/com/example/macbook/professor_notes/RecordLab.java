@@ -22,7 +22,7 @@ public class RecordLab {
         mRecords = new ArrayList<>();
         for(int i = 0; i < 100; i++) {
             Record record = new Record();
-            record.setLastName("FirstName" + i);
+            record.setFirstName("FirstName" + i);
             record.setLastName("LastName" + i);
             record.setCourse("Course" + 1);
             record.setDealtWith(i % 2 == 0); //every other one

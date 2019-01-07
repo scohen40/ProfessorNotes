@@ -22,7 +22,8 @@ public class RecordListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_record_list, container, false);
 
-        mRecordRecyclerView = (RecyclerView)view;
+        mRecordRecyclerView = (RecyclerView)view
+            .findViewById(R.id.record_recycler_view);
         mRecordRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         updateUI();
@@ -30,12 +31,22 @@ public class RecordListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     private void updateUI() {
         RecordLab recordLab = RecordLab.get(getActivity());
         List<Record> records = recordLab.getRecords();
 
-        mAdapter = new RecordAdapter(records);
-        mRecordRecyclerView.setAdapter(mAdapter);
+        if(mAdapter == null) {
+            mAdapter = new RecordAdapter(records);
+            mRecordRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private class RecordAdapter extends RecyclerView.Adapter<RecordHolder> {
@@ -71,7 +82,6 @@ public class RecordListFragment extends Fragment {
 
         private TextView mTitleTextView;
         private TextView mDateTextView;
-
         private ImageView mSolvedImageView;
 
         private Record mRecord;
@@ -87,7 +97,7 @@ public class RecordListFragment extends Fragment {
 
         public void bind(Record Record) {
             mRecord = Record;
-            mTitleTextView.setText(mRecord.getFirstName() + mRecord.getLastName());
+            mTitleTextView.setText(mRecord.getFirstName() + " " + mRecord.getLastName());
             mDateTextView.setText(mRecord.getDate().toString());
             mSolvedImageView.setVisibility(Record.isDealtWith() ? View.VISIBLE : View.GONE);
         }

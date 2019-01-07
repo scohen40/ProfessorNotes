@@ -27,7 +27,7 @@ public class RecordPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime_pager);
+        setContentView(R.layout.activity_record_pager);
 
         UUID recordId = (UUID) getIntent()
                 .getSerializableExtra(EXTRA_RECORD_ID);
