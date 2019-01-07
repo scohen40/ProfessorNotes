@@ -16,12 +16,24 @@ import android.widget.EditText;
 import java.util.UUID;
 
 public class RecordFragment extends Fragment {
+
+    private static final String ARG_RECORD_ID = "record_id";
+
     private Record mRecord;
     private EditText mFirstNameField;
     private EditText mLastNameField;
     private EditText mCourseField;
     private Button mDateButton;
     private CheckBox mDealtWithCheckBox;
+
+    public static RecordFragment newInstance(UUID recordId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_RECORD_ID, recordId);
+
+        RecordFragment fragment = new RecordFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
