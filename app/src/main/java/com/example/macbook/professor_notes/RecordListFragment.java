@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -131,6 +132,7 @@ public class RecordListFragment extends Fragment {
             mAdapter = new RecordAdapter(records);
             mRecordRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setRecords(records);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -161,6 +163,10 @@ public class RecordListFragment extends Fragment {
         public int getItemCount() {
             return mRecords.size();
         }
+
+        public void setRecords(List<Record> records) {
+            mRecords = records;
+        }
     }
 
     private class RecordHolder extends RecyclerView.ViewHolder
@@ -169,6 +175,8 @@ public class RecordListFragment extends Fragment {
         private TextView mTitleTextView;
         private TextView mDateTextView;
         private ImageView mSolvedImageView;
+
+        private ImageButton mDeleteButton;
 
         private Record mRecord;
 
@@ -179,6 +187,8 @@ public class RecordListFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.record_list_title_text);
             mDateTextView = (TextView) itemView.findViewById(R.id.record_list_date_text);
             mSolvedImageView = (ImageView) itemView.findViewById(R.id.record_list_dealt_with_image);
+
+            mDeleteButton = (ImageButton) itemView.findViewById(R.id.record_list_delete_button);
         }
 
         public void bind(Record Record) {
@@ -197,6 +207,14 @@ public class RecordListFragment extends Fragment {
 
             mDateTextView.setText(mRecord.getDate().toString());
             mSolvedImageView.setVisibility(Record.isDealtWith() ? View.VISIBLE : View.GONE);
+
+            mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RecordLab.get(getActivity()).deleteRecord(mRecord.getId());
+                    updateUI();
+                }
+            });
         }
 
         @Override
@@ -205,5 +223,7 @@ public class RecordListFragment extends Fragment {
             startActivity(intent);
         }
     }
+
+
 }
 

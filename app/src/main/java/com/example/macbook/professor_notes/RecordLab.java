@@ -106,11 +106,21 @@ public class RecordLab {
         values.put(RecordDbSchema.RecordTable.Cols.UUID, record.getId().toString());
         values.put(RecordDbSchema.RecordTable.Cols.FIRST, record.getFirstName());
         values.put(RecordDbSchema.RecordTable.Cols.LAST, record.getLastName());
+        values.put(RecordDbSchema.RecordTable.Cols.COURSE, record.getLastName());
         values.put(RecordDbSchema.RecordTable.Cols.NOTES, record.getNotes());
         values.put(RecordDbSchema.RecordTable.Cols.DATE, record.getDate().getTime());
         values.put(RecordDbSchema.RecordTable.Cols.DEALT, record.isDealtWith() ? 1 : 0);
 
         return values;
+    }
+
+    public void deleteRecord(UUID recordId) {
+
+        String uuidString = recordId.toString();
+
+        mDatabase.delete(RecordDbSchema.RecordTable.NAME,
+                RecordDbSchema.RecordTable.Cols.UUID + " = ?",
+                new String[] {uuidString});
     }
 }
 

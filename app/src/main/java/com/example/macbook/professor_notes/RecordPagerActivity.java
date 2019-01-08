@@ -57,5 +57,4 @@ public class RecordPagerActivity extends AppCompatActivity {
             }
         }
     }
-
 }
