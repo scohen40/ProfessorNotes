@@ -106,7 +106,7 @@ public class RecordLab {
         values.put(RecordDbSchema.RecordTable.Cols.UUID, record.getId().toString());
         values.put(RecordDbSchema.RecordTable.Cols.FIRST, record.getFirstName());
         values.put(RecordDbSchema.RecordTable.Cols.LAST, record.getLastName());
-        values.put(RecordDbSchema.RecordTable.Cols.COURSE, record.getLastName());
+        values.put(RecordDbSchema.RecordTable.Cols.COURSE, record.getCourse());
         values.put(RecordDbSchema.RecordTable.Cols.NOTES, record.getNotes());
         values.put(RecordDbSchema.RecordTable.Cols.DATE, record.getDate().getTime());
         values.put(RecordDbSchema.RecordTable.Cols.DEALT, record.isDealtWith() ? 1 : 0);
