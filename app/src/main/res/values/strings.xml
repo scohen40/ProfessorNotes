@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Professor\'s Notes</string>
+    <string name="app_name">Professor Notes</string>
 
     <string name="record_first_name_hint">FIRST NAME</string>
     <string name="record_last_name_hint">LAST NAME</string>
