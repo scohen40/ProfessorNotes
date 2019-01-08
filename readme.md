@@ -1,15 +1,37 @@
 # ProfessorNotes
 The ProfessorNotes app allows teachers to take notes throughout the day so they can keep track of student's behavior, jot down a note about a meeting they had with a student or keep a general note about a student, etc.
 
+**Goal** 
+To provide teachers with a quick and easy way to stay organized throughout the day.
+Practical Use: The Professor’s Notes app allows teachers to take quick notes throughout the
+day so they can keep track of little things students asked them to do/look up, jot down a
+note about a meeting they had with a student or about a student, etc.
+Target Industry: Educational Services
+
 **Relevant Links**
 ***
 * https://www.javahelps.com/2015/07/android-memo-application.html
 * https://www.javahelps.com/2015/03/advanced-android-database.html
 * https://developer.android.com/guide/topics/media/mediarecorder
 
-**Authors**
+**Developers**
  * [Sarah Cohen](https://github.com/scohen40)
  * [Sarah Bracha Schuraytz](https://github.com/sschuraytz)
+ 
+ 
+ 
+**Reflection by the Developers**
+Creating our first major Android app has been a journey. We started out brainstorming for a
+great idea. We wanted something practical – something that could be used in the real world.
+We decided that professors interact with many students throughout the day, and could
+benefit from a fast, straightforward way to keep track of information related to different
+students. Thus, the idea of Professor Notes was born.
+While working on Professor Notes, we really enjoyed the opportunity to implement a
+range of Android features including fragments and RecyclerView. One of the
+coolest parts was the chance to do something we had not discussed in class – connect to a
+database. In order to save notes so professors can access them after exiting, we implemented a SQLite database. 
+It was great to learn about SQLite, and we hope to use it again and our other
+newly-gained skills in our future creations.
 
 **Future Enhancements**
 ***
