@@ -29,11 +29,7 @@ We decided that professors interact with many students throughout the day, and c
 benefit from a fast, straightforward way to keep track of information related to different
 students. Thus, the idea of Professor Notes was born.
 While working on Professor Notes, we really enjoyed the opportunity to implement a
-range of Android features including fragments and RecyclerView. One of the
-coolest parts was the chance to do something we had not discussed in class – connect to a
-database. In order to save notes so professors can access them after exiting, we implemented a SQLite database. 
-It was great to learn about SQLite, and we hope to use it again and our other
-newly-gained skills in our future creations.
+range of Android features including fragments and RecyclerView, and SQLite database. 
 
 **Future Enhancements**
 ***
