@@ -30,6 +30,7 @@ public class RecordFragment extends Fragment {
     private EditText mFirstNameField;
     private EditText mLastNameField;
     private EditText mCourseField;
+    private EditText mNotesField;
     private Button mDateButton;
     private CheckBox mDealtWithCheckBox;
 
@@ -46,7 +47,15 @@ public class RecordFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UUID crimeID = (UUID) getArguments().getSerializable(ARG_RECORD_ID);
-        mRecord = RecordLab.get(getActivity()).getCrime(crimeID);
+        mRecord = RecordLab.get(getActivity()).getRecord(crimeID);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        RecordLab.get(getActivity())
+                .updateRecord(mRecord);
     }
 
     @Override
@@ -99,6 +108,24 @@ public class RecordFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mRecord.setCourse(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mNotesField = (EditText) v.findViewById(R.id.notes_field);
+        mNotesField.setText(mRecord.getNotes());
+        mNotesField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mRecord.setNotes(s.toString());
             }
 
             @Override

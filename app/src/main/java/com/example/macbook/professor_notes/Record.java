@@ -8,11 +8,16 @@ public class Record {
     private String mFirstName;
     private String mLastName;
     private String mCourse;
+    private String mNotes;
     private Date mDate;
     private boolean mDealtWith;
 
     public Record() {
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+    }
+
+    public Record(UUID id) {
+        mId = id;
         mDate  = new Date();
     }
 
@@ -39,6 +44,14 @@ public class Record {
     public String getCourse() { return mCourse; }
 
     public void setCourse(String course) { mCourse = course; }
+
+    public String getNotes() {
+        return mNotes;
+    }
+
+    public void setNotes(String notes) {
+        mNotes = notes;
+    }
 
     public Date getDate() {
         return mDate;
