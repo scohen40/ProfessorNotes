@@ -15,12 +15,14 @@ Target Industry: Educational Services
 * https://developer.android.com/guide/topics/media/mediarecorder
 
 **Developers**
+***
  * [Sarah Cohen](https://github.com/scohen40)
  * [Sarah Bracha Schuraytz](https://github.com/sschuraytz)
  
  
  
 **Reflection by the Developers**
+***
 Creating our first major Android app has been a journey. We started out brainstorming for a
 great idea. We wanted something practical – something that could be used in the real world.
 We decided that professors interact with many students throughout the day, and could
