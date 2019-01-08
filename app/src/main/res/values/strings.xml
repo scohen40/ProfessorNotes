@@ -18,7 +18,7 @@
     <string name="action_about">About</string>
     <string name="about_message">
     This app was created for dedicated teachers and professors around the world!
-    \n\nJust press the "plus" button to add a new student. Your notes will automatically be saved and you can access them anytime.
+    \n\nJust press the "plus" button to add a new student record. Your notes will automatically be saved and you can access them anytime.
     \n\nDeveloped by:\nSarah Cohen and Sarah Bracha Schuraytz</string>
     <string name="action_new_record">New Record</string>
     <string name="show_subtitle">Show Subtitle</string>
